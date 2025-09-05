@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51Talk运营数据中台 - 页面预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 240px;
+            background: #001529;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #1f1f1f;
+            margin-bottom: 20px;
+        }
+
+        .logo h2 {
+            color: #1890ff;
+            font-size: 18px;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .nav-item:hover {
+            background: #1890ff;
+        }
+
+        .nav-item.active {
+            background: #1890ff;
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+            width: 16px;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            margin-left: 240px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: white;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            color: #666;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #1890ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 24px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* KPI卡片 */
+        .kpi-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .kpi-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1890ff;
+            margin-bottom: 8px;
+        }
+
+        .kpi-trend {
+            font-size: 12px;
+            color: #52c41a;
+        }
+
+        /* 图表区域 */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .chart-placeholder.pie {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        /* 数据表格 */
+        .data-table {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            border-color: #1890ff;
+            color: #1890ff;
+        }
+
+        .btn.primary {
+            background: #1890ff;
+            border-color: #1890ff;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background: #40a9ff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 24px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+            background: #fafafa;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .status {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .status.success {
+            background: #f6ffed;
+            color: #52c41a;
+            border: 1px solid #b7eb8f;
+        }
+
+        .status.warning {
+            background: #fffbe6;
+            color: #faad14;
+            border: 1px solid #ffe58f;
+        }
+
+        .status.error {
+            background: #fff2f0;
+            color: #f5222d;
+            border: 1px solid #ffccc7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 页面切换 */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 设计器页面特殊样式 */
+        .designer-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr 280px;
+            gap: 16px;
+            height: calc(100vh - 112px);
+        }
+
+        .component-library {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .canvas-area {
+            background: white;
+            border-radius: 8px;
+            border: 2px dashed #d9d9d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .property-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .component-item {
+            padding: 8px;
+            margin: 4px 0;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .component-item:hover {
+            border-color: #1890ff;
+            background: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>📊 51Talk数据中台</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" onclick="showPage('dashboard')">
+                    <i>🏠</i>首页仪表盘
+                </li>
+                <li class="nav-item" onclick="showPage('datasource')">
+                    <i>🔗</i>数据源管理
+                </li>
+                <li class="nav-item" onclick="showPage('designer')">
+                    <i>🎨</i>仪表盘设计器
+                </li>
+                <li class="nav-item" onclick="showPage('charts')">
+                    <i>📈</i>图表展示
+                </li>
+                <li class="nav-item" onclick="showPage('users')">
+                    <i>👥</i>用户管理
+                </li>
+                <li class="nav-item" onclick="showPage('settings')">
+                    <i>⚙️</i>系统设置
+                </li>
+            </ul>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航 -->
+            <div class="header">
+                <div class="breadcrumb">
+                    <span id="breadcrumb-text">首页 / 仪表盘</span>
+                </div>
+                <div class="user-info">
+                    <span>🔔</span>
+                    <div class="avatar">A</div>
+                    <span>管理员</span>
+                </div>
+            </div>
+
+            <!-- 内容区域 -->
+            <div class="content">
+                <!-- 首页仪表盘 -->
+                <div id="dashboard" class="page active">
+                    <!-- KPI卡片 -->
+                    <div class="kpi-cards">
+                        <div class="kpi-card">
+                            <div class="kpi-title">总学员数</div>
+                            <div class="kpi-value">125,847</div>
+                            <div class="kpi-trend">↗ +12.5% 较上月</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-title">活跃课程数</div>
+                            <div class="kpi-value">2,456</div>
+                            <div class="kpi-trend">↗ +8.3% 较上月</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-title">本月收入</div>
+                            <div class="kpi-value">¥8.9M</div>
+                            <div class="kpi-trend">↗ +15.2% 较上月</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-title">课程完成率</div>
+                            <div class="kpi-value">87.3%</div>
+                            <div class="kpi-trend">↗ +2.1% 较上月</div>
+                        </div>
+                    </div>
+
+                    <!-- 图表区域 -->
+                    <div class="charts-section">
+                        <div class="chart-card">
+                            <div class="chart-title">学员增长趋势</div>
+                            <div class="chart-placeholder">📈 折线图展示区域</div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">课程类型分布</div>
+                            <div class="chart-placeholder pie">🥧 饼图展示区域</div>
+                        </div>
+                    </div>
+
+                    <!-- 数据表格 -->
+                    <div class="data-table">
+                        <div class="table-header">
+                            <div class="table-title">最近活动</div>
+                            <div class="table-actions">
+                                <button class="btn">导出</button>
+                                <button class="btn primary">刷新</button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>事件</th>
+                                    <th>用户</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-01-15 14:30</td>
+                                    <td>新学员注册</td>
+                                    <td>张三</td>
+                                    <td><span class="status success">成功</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-01-15 14:25</td>
+                                    <td>课程购买</td>
+                                    <td>李四</td>
+                                    <td><span class="status success">成功</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-01-15 14:20</td>
+                                    <td>数据同步</td>
+                                    <td>系统</td>
+                                    <td><span class="status warning">处理中</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 数据源管理页面 -->
+                <div id="datasource" class="page">
+                    <div class="data-table">
+                        <div class="table-header">
+                            <div class="table-title">数据源列表</div>
+                            <div class="table-actions">
+                                <button class="btn primary">+ 新增数据源</button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>数据源名称</th>
+                                    <th>类型</th>
+                                    <th>连接状态</th>
+                                    <th>最后同步时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>学员数据库</td>
+                                    <td>MySQL</td>
+                                    <td><span class="status success">已连接</span></td>
+                                    <td>2024-01-15 14:30</td>
+                                    <td>
+                                        <button class="btn">编辑</button>
+                                        <button class="btn">测试</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>课程API</td>
+                                    <td>REST API</td>
+                                    <td><span class="status success">已连接</span></td>
+                                    <td>2024-01-15 14:25</td>
+                                    <td>
+                                        <button class="btn">编辑</button>
+                                        <button class="btn">测试</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>财务系统</td>
+                                    <td>Excel</td>
+                                    <td><span class="status error">连接失败</span></td>
+                                    <td>2024-01-15 12:00</td>
+                                    <td>
+                                        <button class="btn">编辑</button>
+                                        <button class="btn">重试</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 仪表盘设计器页面 -->
+                <div id="designer" class="page">
+                    <div class="designer-layout">
+                        <div class="component-library">
+                            <h4>组件库</h4>
+                            <div class="component-item">📊 柱状图</div>
+                            <div class="component-item">📈 折线图</div>
+                            <div class="component-item">🥧 饼图</div>
+                            <div class="component-item">📋 表格</div>
+                            <div class="component-item">🔢 数字卡片</div>
+                            <div class="component-item">📊 仪表盘</div>
+                        </div>
+                        <div class="canvas-area">
+                            拖拽组件到此处开始设计
+                        </div>
+                        <div class="property-panel">
+                            <h4>属性面板</h4>
+                            <p>选择组件后在此配置属性</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图表展示页面 -->
+                <div id="charts" class="page">
+                    <div class="charts-section">
+                        <div class="chart-card">
+                            <div class="chart-title">月度收入趋势</div>
+                            <div class="chart-placeholder">📊 柱状图展示区域</div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">用户地域分布</div>
+                            <div class="chart-placeholder pie">🗺️ 地图展示区域</div>
+                        </div>
+                    </div>
+                    <div class="charts-section">
+                        <div class="chart-card">
+                            <div class="chart-title">课程热度排行</div>
+                            <div class="chart-placeholder">📊 横向柱状图</div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">学习时长分布</div>
+                            <div class="chart-placeholder pie">📊 环形图展示</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 用户管理页面 -->
+                <div id="users" class="page">
+                    <div class="data-table">
+                        <div class="table-header">
+                            <div class="table-title">用户管理</div>
+                            <div class="table-actions">
+                                <button class="btn">导出用户</button>
+                                <button class="btn primary">+ 新增用户</button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>角色</th>
+                                    <th>邮箱</th>
+                                    <th>状态</th>
+                                    <th>最后登录</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>admin</td>
+                                    <td>管理员</td>
+                                    <td>admin@51talk.com</td>
+                                    <td><span class="status success">活跃</span></td>
+                                    <td>2024-01-15 14:30</td>
+                                    <td>
+                                        <button class="btn">编辑</button>
+                                        <button class="btn">重置密码</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>operator1</td>
+                                    <td>运营人员</td>
+                                    <td>op1@51talk.com</td>
+                                    <td><span class="status success">活跃</span></td>
+                                    <td>2024-01-15 10:15</td>
+                                    <td>
+                                        <button class="btn">编辑</button>
+                                        <button class="btn">重置密码</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 系统设置页面 -->
+                <div id="settings" class="page">
+                    <div class="chart-card">
+                        <div class="chart-title">系统配置</div>
+                        <div style="padding: 20px;">
+                            <h4>数据刷新设置</h4>
+                            <p>自动刷新间隔：<select><option>5分钟</option><option>10分钟</option><option>30分钟</option></select></p>
+                            <br>
+                            <h4>通知设置</h4>
+                            <p><input type="checkbox" checked> 数据异常通知</p>
+                            <p><input type="checkbox" checked> 系统维护通知</p>
+                            <br>
+                            <h4>安全设置</h4>
+                            <p>会话超时：<select><option>30分钟</option><option>1小时</option><option>2小时</option></select></p>
+                            <br>
+                            <button class="btn primary">保存设置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // 隐藏所有页面
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // 显示选中页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新导航状态
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 更新面包屑
+            const breadcrumbMap = {
+                'dashboard': '首页 / 仪表盘',
+                'datasource': '数据管理 / 数据源管理',
+                'designer': '设计工具 / 仪表盘设计器',
+                'charts': '数据展示 / 图表展示',
+                'users': '系统管理 / 用户管理',
+                'settings': '系统管理 / 系统设置'
+            };
+            document.getElementById('breadcrumb-text').textContent = breadcrumbMap[pageId];
+        }
+
+        // 模拟实时数据更新
+        setInterval(() => {
+            const kpiValues = document.querySelectorAll('.kpi-value');
+            kpiValues.forEach(value => {
+                if (Math.random() > 0.9) {
+                    value.style.color = '#52c41a';
+                    setTimeout(() => {
+                        value.style.color = '#1890ff';
+                    }, 1000);
+                }
+            });
+        }, 3000);
+    </script>
+</body>
+</html>
