@@ -1,0 +1,469 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# TypeScript and JavaScript files
+[*.{js,jsx,ts,tsx}]
+indent_size = 2
+max_line_length = 100
+
+# JSON files
+[*.json]
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# SQL files
+[*.sql]
+indent_size = 2
+
+# Docker files
+[Dockerfile*]
+indent_size = 2
+
+# Shell scripts
+[*.{sh,bash}]
+indent_size = 2
+
+# Batch files
+[*.{bat,cmd}]
+end_of_line = crlf
+indent_size = 2
+
+# Configuration files
+[*.{ini,conf,config}]
+indent_size = 2
+
+# Package files
+[package.json]
+indent_size = 2
+
+# Lock files
+[{package-lock.json,yarn.lock,pnpm-lock.yaml}]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+# Environment files
+[.env*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# HTML files
+[*.{html,htm}]
+indent_size = 2
+
+# CSS files
+[*.{css,scss,sass,less}]
+indent_size = 2
+
+# XML files
+[*.xml]
+indent_size = 2
+
+# Properties files
+[*.properties]
+indent_size = 2
+
+# Makefile
+[{Makefile,makefile}]
+indent_style = tab
+indent_size = 4
+
+# Go files
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# Python files
+[*.py]
+indent_size = 4
+max_line_length = 88
+
+# Java files
+[*.java]
+indent_size = 4
+
+# C/C++ files
+[*.{c,cpp,h,hpp}]
+indent_size = 4
+
+# C# files
+[*.cs]
+indent_size = 4
+
+# PHP files
+[*.php]
+indent_size = 4
+
+# Ruby files
+[*.rb]
+indent_size = 2
+
+# Rust files
+[*.rs]
+indent_size = 4
+
+# Swift files
+[*.swift]
+indent_size = 4
+
+# Kotlin files
+[*.kt]
+indent_size = 4
+
+# Scala files
+[*.scala]
+indent_size = 2
+
+# Clojure files
+[*.clj]
+indent_size = 2
+
+# Elixir files
+[*.ex]
+indent_size = 2
+
+# Erlang files
+[*.erl]
+indent_size = 2
+
+# Haskell files
+[*.hs]
+indent_size = 2
+
+# F# files
+[*.fs]
+indent_size = 4
+
+# OCaml files
+[*.ml]
+indent_size = 2
+
+# Lua files
+[*.lua]
+indent_size = 2
+
+# Perl files
+[*.pl]
+indent_size = 4
+
+# R files
+[*.r]
+indent_size = 2
+
+# Julia files
+[*.jl]
+indent_size = 4
+
+# Dart files
+[*.dart]
+indent_size = 2
+
+# Vue files
+[*.vue]
+indent_size = 2
+
+# Svelte files
+[*.svelte]
+indent_size = 2
+
+# Angular template files
+[*.{component.html,component.ts}]
+indent_size = 2
+
+# React files
+[*.{jsx,tsx}]
+indent_size = 2
+
+# GraphQL files
+[*.{graphql,gql}]
+indent_size = 2
+
+# Protocol Buffer files
+[*.proto]
+indent_size = 2
+
+# Terraform files
+[*.tf]
+indent_size = 2
+
+# Ansible files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Kubernetes files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Helm files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Docker Compose files
+[docker-compose*.{yml,yaml}]
+indent_size = 2
+
+# GitHub Actions files
+[.github/workflows/*.{yml,yaml}]
+indent_size = 2
+
+# GitLab CI files
+[.gitlab-ci.yml]
+indent_size = 2
+
+# CircleCI files
+[.circleci/config.yml]
+indent_size = 2
+
+# Travis CI files
+[.travis.yml]
+indent_size = 2
+
+# Azure Pipelines files
+[azure-pipelines.yml]
+indent_size = 2
+
+# Jenkins files
+[Jenkinsfile]
+indent_size = 2
+
+# Gradle files
+[*.gradle]
+indent_size = 4
+
+# Maven files
+[pom.xml]
+indent_size = 2
+
+# SBT files
+[*.sbt]
+indent_size = 2
+
+# CMake files
+[CMakeLists.txt]
+indent_size = 2
+
+# Meson files
+[meson.build]
+indent_size = 2
+
+# Bazel files
+[{BUILD,WORKSPACE}]
+indent_size = 4
+
+# Buck files
+[BUCK]
+indent_size = 2
+
+# Cargo files
+[Cargo.toml]
+indent_size = 2
+
+# Composer files
+[composer.json]
+indent_size = 2
+
+# Bundler files
+[Gemfile]
+indent_size = 2
+
+# Poetry files
+[pyproject.toml]
+indent_size = 2
+
+# Pipenv files
+[Pipfile]
+indent_size = 2
+
+# Requirements files
+[requirements*.txt]
+indent_size = 2
+
+# Setup files
+[setup.{py,cfg}]
+indent_size = 4
+
+# Tox files
+[tox.ini]
+indent_size = 2
+
+# Pytest files
+[pytest.ini]
+indent_size = 2
+
+# Coverage files
+[.coveragerc]
+indent_size = 2
+
+# Flake8 files
+[.flake8]
+indent_size = 2
+
+# Black files
+[pyproject.toml]
+indent_size = 2
+
+# isort files
+[.isort.cfg]
+indent_size = 2
+
+# mypy files
+[mypy.ini]
+indent_size = 2
+
+# Pylint files
+[.pylintrc]
+indent_size = 2
+
+# Bandit files
+[.bandit]
+indent_size = 2
+
+# Safety files
+[.safety-policy.yml]
+indent_size = 2
+
+# Pre-commit files
+[.pre-commit-config.yaml]
+indent_size = 2
+
+# Commitizen files
+[.cz.toml]
+indent_size = 2
+
+# Semantic Release files
+[.releaserc.json]
+indent_size = 2
+
+# Renovate files
+[renovate.json]
+indent_size = 2
+
+# Dependabot files
+[.github/dependabot.yml]
+indent_size = 2
+
+# CodeClimate files
+[.codeclimate.yml]
+indent_size = 2
+
+# SonarQube files
+[sonar-project.properties]
+indent_size = 2
+
+# ESLint files
+[.eslintrc*]
+indent_size = 2
+
+# Prettier files
+[.prettierrc*]
+indent_size = 2
+
+# Stylelint files
+[.stylelintrc*]
+indent_size = 2
+
+# JSHint files
+[.jshintrc]
+indent_size = 2
+
+# TSLint files
+[tslint.json]
+indent_size = 2
+
+# Babel files
+[.babelrc*]
+indent_size = 2
+
+# PostCSS files
+[postcss.config.js]
+indent_size = 2
+
+# Tailwind files
+[tailwind.config.js]
+indent_size = 2
+
+# Webpack files
+[webpack*.js]
+indent_size = 2
+
+# Rollup files
+[rollup.config.js]
+indent_size = 2
+
+# Vite files
+[vite.config.*]
+indent_size = 2
+
+# Parcel files
+[.parcelrc]
+indent_size = 2
+
+# Snowpack files
+[snowpack.config.js]
+indent_size = 2
+
+# Svelte Kit files
+[svelte.config.js]
+indent_size = 2
+
+# Next.js files
+[next.config.js]
+indent_size = 2
+
+# Nuxt.js files
+[nuxt.config.js]
+indent_size = 2
+
+# Gatsby files
+[gatsby-*.js]
+indent_size = 2
+
+# Remix files
+[remix.config.js]
+indent_size = 2
+
+# Astro files
+[astro.config.mjs]
+indent_size = 2
+
+# SvelteKit files
+[svelte.config.js]
+indent_size = 2
+
+# Solid.js files
+[vite.config.ts]
+indent_size = 2
+
+# Qwik files
+[vite.config.ts]
+indent_size = 2
+
+# Fresh files
+[fresh.gen.ts]
+indent_size = 2
+
+# Deno files
+[deno.json]
+indent_size = 2
+
+# Bun files
+[bunfig.toml]
+indent_size = 2

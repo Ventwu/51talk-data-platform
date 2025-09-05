@@ -1,0 +1,205 @@
+.dashboard-grid {
+  padding: 16px;
+}
+
+.dashboard-grid-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.dashboard-grid-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.dashboard-card-wrapper {
+  transition: all 0.2s ease;
+  cursor: grab;
+}
+
+.dashboard-card-wrapper:active {
+  cursor: grabbing;
+}
+
+.dashboard-card-wrapper.dragging {
+  z-index: 1000;
+  transform: rotate(5deg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card {
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.dashboard-card:hover {
+  border-color: #1890ff;
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+}
+
+.dashboard-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.dashboard-info {
+  flex: 1;
+  cursor: grab;
+}
+
+.dashboard-info:active {
+  cursor: grabbing;
+}
+
+.dashboard-menu-btn {
+  flex-shrink: 0;
+  margin-left: 8px;
+  color: #8c8c8c;
+  transition: color 0.2s ease;
+}
+
+.dashboard-menu-btn:hover {
+  color: #1890ff;
+  background-color: #f0f8ff;
+}
+
+.dashboard-preview {
+  height: 120px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-preview-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4px;
+  width: 80%;
+  height: 70%;
+}
+
+.preview-chart {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.stat-item {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    padding: 8px;
+  }
+  
+  .dashboard-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .dashboard-menu-btn {
+    align-self: flex-end;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+/* 拖拽时的视觉反馈 */
+.dashboard-card-wrapper[data-sortable-id] {
+  touch-action: manipulation;
+}
+
+/* 拖拽占位符样式 */
+.sortable-ghost {
+  opacity: 0.4;
+}
+
+.sortable-chosen {
+  cursor: grabbing;
+}
+
+/* 动画效果 */
+@keyframes cardHover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+.dashboard-card:hover {
+  animation: cardHover 0.2s ease forwards;
+}
+
+/* 加载状态 */
+.dashboard-card.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.dashboard-card.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 深色主题支持 */
+@media (prefers-color-scheme: dark) {
+  .dashboard-card {
+    background-color: #1f1f1f;
+    border-color: #303030;
+  }
+  
+  .dashboard-card:hover {
+    border-color: #1890ff;
+  }
+  
+  .dashboard-stats {
+    border-top-color: #303030;
+  }
+  
+  .stat-item {
+    color: #8c8c8c;
+  }
+  
+  .dashboard-menu-btn {
+    color: #8c8c8c;
+  }
+  
+  .dashboard-menu-btn:hover {
+    background-color: #262626;
+  }
+}

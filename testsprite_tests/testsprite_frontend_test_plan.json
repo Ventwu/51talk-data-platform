@@ -1,0 +1,490 @@
+[
+  {
+    "id": "TC001",
+    "title": "User Registration Success",
+    "description": "Verify user can successfully register with valid unique username, email, and strong password",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to registration page"
+      },
+      {
+        "type": "action",
+        "description": "Input valid and unique username, valid email, and strong password"
+      },
+      {
+        "type": "action",
+        "description": "Submit registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify registration is successful and user receives confirmation"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "User Registration with Existing Email",
+    "description": "Verify system rejects registration when using an already registered email",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to registration page"
+      },
+      {
+        "type": "action",
+        "description": "Input existing email and any username/password"
+      },
+      {
+        "type": "action",
+        "description": "Submit registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify system shows error message related to duplicate email"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "User Login Success",
+    "description": "Check login is successful with correct username/email and password",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Input valid username/email and correct password"
+      },
+      {
+        "type": "action",
+        "description": "Click login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that user is authenticated and redirected to dashboard"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "User Login Failure with Invalid Credentials",
+    "description": "Verify login fails with invalid username or incorrect password",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Input invalid username/email or incorrect password"
+      },
+      {
+        "type": "action",
+        "description": "Click login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify login fails with appropriate error message and no session/token granted"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "JWT Authentication Token Validation",
+    "description": "Verify JWT token is issued on login and validated for protected API access",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login with valid credentials to receive JWT token"
+      },
+      {
+        "type": "action",
+        "description": "Use JWT token to access protected API endpoint"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access granted and token is validated"
+      },
+      {
+        "type": "action",
+        "description": "Use expired or tampered JWT token to access protected endpoint"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access denied with unauthorized error"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Data Source Creation and Connection Test Success",
+    "description": "Verify user can create a data source configuration and test the database connection successfully for supported types",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to data source management page"
+      },
+      {
+        "type": "action",
+        "description": "Create new data source with valid parameters for MySQL database"
+      },
+      {
+        "type": "action",
+        "description": "Initiate connection test for the new data source"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify connection test returns success"
+      },
+      {
+        "type": "action",
+        "description": "Repeat creation and test for PostgreSQL and SQLite"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify connection tests succeed for all supported databases"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Data Source Connection Test Failure",
+    "description": "Verify system properly reports errors on data source connection failure, e.g., wrong credentials or unreachable host",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Create data source with invalid hostname or wrong credentials"
+      },
+      {
+        "type": "action",
+        "description": "Perform connection test"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify connection test reports failure with meaningful error message"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Dashboard Designer Drag-and-Drop Layout",
+    "description": "Verify user can drag and drop dashboard components to design layouts including adding and removing chart components",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to dashboard designer"
+      },
+      {
+        "type": "action",
+        "description": "Drag chart component from toolbox to dashboard layout area"
+      },
+      {
+        "type": "action",
+        "description": "Rearrange chart components within the layout"
+      },
+      {
+        "type": "action",
+        "description": "Remove a chart component from layout"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify layout updates accordingly with no errors"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Chart Component Data Binding and Configuration",
+    "description": "Verify user can bind charts to data sources, select tables and fields, and configure filters and calculations correctly",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Add a chart component in dashboard designer"
+      },
+      {
+        "type": "action",
+        "description": "Select connected data source for the chart"
+      },
+      {
+        "type": "action",
+        "description": "Choose table and fields to bind to the chart"
+      },
+      {
+        "type": "action",
+        "description": "Configure filter and aggregation settings"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify chart updates to display correct data preview"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Chart Component Display Accuracy",
+    "description": "Verify all supported chart types (bar, line, pie, table, dashboard gauge) render correctly with user configurations",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Add each chart type to dashboard"
+      },
+      {
+        "type": "action",
+        "description": "Bind valid data and configure chart style options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify each chart type visually renders appropriately with accurate data"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Dashboard Save and Real-time Preview",
+    "description": "Verify user can save dashboard layouts and see real-time data preview reflecting current data and filter configurations",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Create or edit dashboard layout and add charts"
+      },
+      {
+        "type": "action",
+        "description": "Save the dashboard design"
+      },
+      {
+        "type": "action",
+        "description": "Ensure real-time data refresh is active and reflected correctly in charts"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dashboard is saved persistently and preview matches real data accurately"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Dashboard Responsive Layout and Data Refresh",
+    "description": "Verify dashboard layout responsiveness on different screen sizes and that data refreshes automatically without user action",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Access dashboard on desktop, tablet, and mobile resolutions"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify layout adapts and displays all components properly without overlap or cutoff"
+      },
+      {
+        "type": "action",
+        "description": "Wait for automatic data refresh interval"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify chart data updates automatically without manual reload"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "User Role and Permission Assignment",
+    "description": "Verify admin can create roles, assign permissions and link users to roles controlling access to data source and dashboard features",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as admin user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to role management page"
+      },
+      {
+        "type": "action",
+        "description": "Create new role with specific read/write access permissions"
+      },
+      {
+        "type": "action",
+        "description": "Assign user accounts to this new role"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify users have access only as per role permissions when accessing related data and dashboard features"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Unauthorized Access Prevention",
+    "description": "Verify that users without proper permissions cannot access or modify restricted data sources and dashboards",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as user with limited permissions"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to access or edit restricted data sources or dashboards"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access denied with appropriate unauthorized error message"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "System Health Check API",
+    "description": "Verify /api/system/health endpoint returns expected system health status with all monitored services",
+    "category": "integration",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send GET request to /api/system/health"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains all expected health metrics with normal status"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "System Logs Retrieval",
+    "description": "Verify system logging records error, warning, and info logs and logs can be retrieved through API",
+    "category": "integration",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger error or typical system event generating logs"
+      },
+      {
+        "type": "action",
+        "description": "Send GET request to /api/system/logs"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify logs include recent generated events with correct levels and messages"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Dashboard Export to Excel and PDF",
+    "description": "Verify user can export dashboard data and view as Excel and PDF formats",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open existing dashboard with multiple charts"
+      },
+      {
+        "type": "action",
+        "description": "Use export functionality to generate Excel file"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify exported Excel contains correct data and formatting"
+      },
+      {
+        "type": "action",
+        "description": "Use export functionality to generate PDF file"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify PDF includes dashboard layout and charts as expected"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Real-time Data Refresh Under Load",
+    "description": "Verify system handles high concurrency with real-time data refresh responding within 3 seconds",
+    "category": "performance",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate multiple concurrent users accessing dashboard with real-time refresh enabled"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify data refresh response time does not exceed 3 seconds"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Database Backup and Recovery",
+    "description": "Verify automated backup tasks execute successfully and data can be restored correctly",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger or wait for scheduled database backup job"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify backup file is created and stored as configured"
+      },
+      {
+        "type": "action",
+        "description": "Perform data recovery from backup file in test environment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify restored data integrity matches original"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "System Availability and Uptime Monitoring",
+    "description": "Verify system uptime monitoring tracks availability achieving 99% and detects downtime promptly",
+    "category": "performance",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Monitor system uptime using health and stats APIs over extended time"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify uptime is at least 99% and that any downtime was logged"
+      }
+    ]
+  }
+]

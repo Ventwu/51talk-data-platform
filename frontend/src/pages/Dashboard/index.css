@@ -1,0 +1,439 @@
+/* 仪表盘页面样式 */
+.dashboard-page {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: calc(100vh - 64px);
+}
+
+/* 页面头部 */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.header-left h2 {
+  margin-bottom: 4px !important;
+  color: #262626;
+  font-weight: 600;
+}
+
+.header-right .ant-space {
+  flex-wrap: wrap;
+}
+
+/* 统计卡片区域 */
+.stat-cards {
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.stat-card .ant-card-body {
+  padding: 20px;
+}
+
+.stat-card .ant-statistic {
+  text-align: center;
+}
+
+.stat-card .ant-statistic-title {
+  font-size: 14px;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+}
+
+.stat-card .ant-statistic-content {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.stat-card .ant-statistic-content-prefix {
+  font-size: 20px;
+  margin-right: 8px;
+  color: #1890ff;
+}
+
+/* 趋势指示器 */
+.stat-trend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.stat-trend .anticon {
+  font-size: 12px;
+}
+
+/* 图表区域 */
+.chart-section {
+  margin-bottom: 24px;
+}
+
+.chart-section .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: none;
+}
+
+.chart-section .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 24px;
+}
+
+.chart-section .ant-card-head-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.chart-section .ant-card-body {
+  padding: 24px;
+}
+
+/* 快速操作卡片 */
+.quick-action-card {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #f0f0f0;
+}
+
+.quick-action-card:hover {
+  border-color: #1890ff;
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.quick-action-card .ant-card-body {
+  padding: 20px;
+}
+
+.quick-action-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quick-action-icon {
+  font-size: 24px;
+  color: #1890ff;
+  flex-shrink: 0;
+}
+
+.quick-action-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.quick-action-desc {
+  font-size: 12px;
+  color: #8c8c8c;
+  line-height: 1.4;
+}
+
+/* 活动表格样式 */
+.ant-table-tbody > tr > td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.ant-table-tbody > tr:last-child > td {
+  border-bottom: none;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background-color: #fafafa;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .header-right {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 16px;
+  }
+  
+  .dashboard-header {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .header-left h2 {
+    font-size: 20px !important;
+  }
+  
+  .header-right .ant-space {
+    width: 100%;
+  }
+  
+  .header-right .ant-select,
+  .header-right .ant-picker {
+    width: 100%;
+  }
+  
+  .stat-cards {
+    margin-bottom: 16px;
+  }
+  
+  .chart-section {
+    margin-bottom: 16px;
+  }
+  
+  .stat-card .ant-card-body {
+    padding: 16px;
+  }
+  
+  .stat-card .ant-statistic-content {
+    font-size: 24px;
+  }
+  
+  .chart-section .ant-card-body {
+    padding: 16px;
+  }
+  
+  .quick-action-card .ant-card-body {
+    padding: 16px;
+  }
+  
+  .quick-action-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .quick-action-icon {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-page {
+    padding: 12px;
+  }
+  
+  .dashboard-header {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .header-left h2 {
+    font-size: 18px !important;
+  }
+  
+  .stat-cards,
+  .chart-section {
+    margin-bottom: 12px;
+  }
+  
+  .stat-card .ant-card-body,
+  .chart-section .ant-card-body,
+  .quick-action-card .ant-card-body {
+    padding: 12px;
+  }
+  
+  .stat-card .ant-statistic-content {
+    font-size: 20px;
+  }
+  
+  .chart-section .ant-card-head {
+    padding: 12px 16px;
+  }
+  
+  .chart-section .ant-card-head-title {
+    font-size: 14px;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .dashboard-page {
+  background-color: #000;
+}
+
+[data-theme='dark'] .dashboard-header {
+  background: #141414;
+  border: 1px solid #303030;
+}
+
+[data-theme='dark'] .header-left h2 {
+  color: #fff;
+}
+
+[data-theme='dark'] .stat-card,
+[data-theme='dark'] .chart-section .ant-card,
+[data-theme='dark'] .quick-action-card {
+  background: #141414;
+  border-color: #303030;
+}
+
+[data-theme='dark'] .stat-card:hover,
+[data-theme='dark'] .chart-section .ant-card:hover {
+  border-color: #1890ff;
+}
+
+[data-theme='dark'] .quick-action-card:hover {
+  border-color: #1890ff;
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.25);
+}
+
+[data-theme='dark'] .chart-section .ant-card-head {
+  border-bottom-color: #303030;
+}
+
+[data-theme='dark'] .chart-section .ant-card-head-title,
+[data-theme='dark'] .quick-action-title {
+  color: #fff;
+}
+
+[data-theme='dark'] .quick-action-desc {
+  color: #bfbfbf;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr > td {
+  border-bottom-color: #303030;
+  background-color: transparent;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr:hover > td {
+  background-color: #262626;
+}
+
+/* 加载状态 */
+.ant-spin-nested-loading > .ant-spin-container {
+  transition: opacity 0.3s ease;
+}
+
+.ant-spin-spinning .ant-spin-container {
+  opacity: 0.7;
+}
+
+/* 图表容器 */
+.chart-section .ant-card-body > div {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* 统计数值动画 */
+.stat-card .ant-statistic-content-value {
+  transition: all 0.3s ease;
+}
+
+/* 卡片阴影层级 */
+.stat-card,
+.chart-section .ant-card,
+.quick-action-card {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card:hover,
+.chart-section .ant-card:hover,
+.quick-action-card:hover {
+  z-index: 2;
+}
+
+/* 按钮组样式 */
+.dashboard-header .ant-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.dashboard-header .ant-btn {
+  border-radius: 6px;
+}
+
+/* 选择器样式 */
+.dashboard-header .ant-select {
+  border-radius: 6px;
+}
+
+.dashboard-header .ant-picker {
+  border-radius: 6px;
+}
+
+/* 表格行高 */
+.ant-table-small .ant-table-tbody > tr > td {
+  padding: 8px 12px;
+}
+
+/* 趋势箭头动画 */
+.stat-trend .anticon {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 卡片进入动画 */
+.stat-card,
+.chart-section .ant-card,
+.quick-action-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 延迟动画 */
+.stat-cards .ant-col:nth-child(1) .stat-card {
+  animation-delay: 0.1s;
+}
+
+.stat-cards .ant-col:nth-child(2) .stat-card {
+  animation-delay: 0.2s;
+}
+
+.stat-cards .ant-col:nth-child(3) .stat-card {
+  animation-delay: 0.3s;
+}
+
+.stat-cards .ant-col:nth-child(4) .stat-card {
+  animation-delay: 0.4s;
+}

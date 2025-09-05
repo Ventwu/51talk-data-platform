@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单调试工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .debug-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .debug-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .debug-output {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        button {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #40a9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>登录表单调试工具</h1>
+        
+        <div class="debug-section">
+            <div class="debug-title">检查表单元素</div>
+            <button onclick="checkFormElements()">检查表单元素</button>
+            <button onclick="checkFormValues()">检查表单值</button>
+            <button onclick="simulateFormSubmit()">模拟表单提交</button>
+            <div id="form-check-output" class="debug-output"></div>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">控制台日志监控</div>
+            <button onclick="startLogMonitoring()">开始监控</button>
+            <button onclick="clearLogs()">清除日志</button>
+            <div id="console-logs" class="debug-output"></div>
+        </div>
+        
+        <div class="debug-section">
+            <div class="debug-title">网络请求监控</div>
+            <button onclick="startNetworkMonitoring()">开始监控网络</button>
+            <div id="network-logs" class="debug-output"></div>
+        </div>
+    </div>
+
+    <script>
+        let originalConsoleLog = console.log;
+        let originalConsoleError = console.error;
+        let logs = [];
+        
+        function checkFormElements() {
+            const output = document.getElementById('form-check-output');
+            let result = '检查表单元素:\n';
+            
+            // 检查是否在登录页面
+            if (window.location.pathname !== '/login') {
+                result += '错误: 当前不在登录页面\n';
+                result += '当前路径: ' + window.location.pathname + '\n';
+                output.textContent = result;
+                return;
+            }
+            
+            // 检查表单元素
+            const forms = document.querySelectorAll('form');
+            result += `找到 ${forms.length} 个表单\n`;
+            
+            forms.forEach((form, index) => {
+                result += `表单 ${index + 1}:\n`;
+                result += `  - name: ${form.name || '未设置'}\n`;
+                result += `  - class: ${form.className || '未设置'}\n`;
+                
+                const inputs = form.querySelectorAll('input');
+                result += `  - 输入框数量: ${inputs.length}\n`;
+                
+                inputs.forEach((input, i) => {
+                    result += `    输入框 ${i + 1}: name="${input.name}", type="${input.type}", value="${input.value}"\n`;
+                });
+            });
+            
+            // 检查Ant Design表单
+            const antForms = document.querySelectorAll('.ant-form');
+            result += `\n找到 ${antForms.length} 个Ant Design表单\n`;
+            
+            const antInputs = document.querySelectorAll('.ant-input');
+            result += `找到 ${antInputs.length} 个Ant Design输入框\n`;
+            
+            output.textContent = result;
+        }
+        
+        function checkFormValues() {
+            const output = document.getElementById('form-check-output');
+            let result = '检查表单值:\n';
+            
+            // 检查所有输入框的值
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach((input, index) => {
+                result += `输入框 ${index + 1}: name="${input.name}", value="${input.value}"\n`;
+            });
+            
+            output.textContent = result;
+        }
+        
+        function simulateFormSubmit() {
+            const output = document.getElementById('form-check-output');
+            let result = '模拟表单提交:\n';
+            
+            const forms = document.querySelectorAll('form');
+            if (forms.length === 0) {
+                result += '错误: 未找到表单\n';
+                output.textContent = result;
+                return;
+            }
+            
+            const form = forms[0];
+            const formData = new FormData(form);
+            
+            result += '表单数据:\n';
+            for (let [key, value] of formData.entries()) {
+                result += `  ${key}: ${value}\n`;
+            }
+            
+            output.textContent = result;
+        }
+        
+        function startLogMonitoring() {
+            const output = document.getElementById('console-logs');
+            
+            // 重写console.log和console.error
+            console.log = function(...args) {
+                logs.push({type: 'log', args: args, time: new Date().toLocaleTimeString()});
+                updateLogDisplay();
+                originalConsoleLog.apply(console, args);
+            };
+            
+            console.error = function(...args) {
+                logs.push({type: 'error', args: args, time: new Date().toLocaleTimeString()});
+                updateLogDisplay();
+                originalConsoleError.apply(console, args);
+            };
+            
+            output.textContent = '开始监控控制台日志...\n';
+        }
+        
+        function updateLogDisplay() {
+            const output = document.getElementById('console-logs');
+            let result = '';
+            
+            logs.slice(-20).forEach(log => {
+                result += `[${log.time}] ${log.type.toUpperCase()}: ${log.args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                ).join(' ')}\n`;
+            });
+            
+            output.textContent = result;
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function clearLogs() {
+            logs = [];
+            document.getElementById('console-logs').textContent = '日志已清除\n';
+        }
+        
+        function startNetworkMonitoring() {
+            const output = document.getElementById('network-logs');
+            let networkLogs = [];
+            
+            // 监控fetch请求
+            const originalFetch = window.fetch;
+            window.fetch = function(...args) {
+                const url = args[0];
+                const options = args[1] || {};
+                
+                networkLogs.push({
+                    type: 'fetch',
+                    url: url,
+                    method: options.method || 'GET',
+                    time: new Date().toLocaleTimeString()
+                });
+                
+                updateNetworkDisplay();
+                
+                return originalFetch.apply(this, args)
+                    .then(response => {
+                        networkLogs.push({
+                            type: 'response',
+                            url: url,
+                            status: response.status,
+                            time: new Date().toLocaleTimeString()
+                        });
+                        updateNetworkDisplay();
+                        return response;
+                    })
+                    .catch(error => {
+                        networkLogs.push({
+                            type: 'error',
+                            url: url,
+                            error: error.message,
+                            time: new Date().toLocaleTimeString()
+                        });
+                        updateNetworkDisplay();
+                        throw error;
+                    });
+            };
+            
+            function updateNetworkDisplay() {
+                let result = '';
+                networkLogs.slice(-10).forEach(log => {
+                    if (log.type === 'fetch') {
+                        result += `[${log.time}] 请求: ${log.method} ${log.url}\n`;
+                    } else if (log.type === 'response') {
+                        result += `[${log.time}] 响应: ${log.status} ${log.url}\n`;
+                    } else if (log.type === 'error') {
+                        result += `[${log.time}] 错误: ${log.error} ${log.url}\n`;
+                    }
+                });
+                output.textContent = result;
+                output.scrollTop = output.scrollHeight;
+            }
+            
+            output.textContent = '开始监控网络请求...\n';
+        }
+        
+        // 页面加载完成后自动检查
+        window.addEventListener('load', function() {
+            setTimeout(checkFormElements, 1000);
+        });
+    </script>
+</body>
+</html>

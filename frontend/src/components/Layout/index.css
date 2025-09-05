@@ -1,0 +1,321 @@
+/* 主布局样式 */
+.main-layout {
+  min-height: 100vh;
+}
+
+/* 侧边栏样式 */
+.layout-sider {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+}
+
+.layout-sider .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Logo 样式 */
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  height: 64px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s;
+}
+
+.logo-image {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.logo-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1890ff;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* 暗色主题下的 Logo */
+.ant-layout-sider-dark .logo {
+  border-bottom-color: #303030;
+}
+
+.ant-layout-sider-dark .logo-text {
+  color: #fff;
+}
+
+/* 菜单样式 */
+.layout-menu {
+  flex: 1;
+  border-right: none;
+}
+
+.layout-menu .ant-menu-item {
+  margin: 4px 8px;
+  border-radius: 6px;
+}
+
+.layout-menu .ant-menu-item-selected {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.ant-layout-sider-dark .layout-menu .ant-menu-item-selected {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+/* 内容区域样式 */
+.layout-content {
+  margin-left: 200px;
+  transition: all 0.2s;
+}
+
+.layout-content.collapsed {
+  margin-left: 80px;
+}
+
+/* 头部样式 */
+.layout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 折叠按钮样式 */
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+/* 面包屑样式 */
+.breadcrumb {
+  margin: 0;
+}
+
+.breadcrumb-link {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.breadcrumb-link:hover {
+  color: #1890ff;
+}
+
+/* 用户信息样式 */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-info:hover {
+  background-color: #f5f5f5;
+}
+
+.user-name {
+  font-size: 14px;
+  color: #333;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 通知按钮样式 */
+.notification-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+/* 通知项样式 */
+.notification-item {
+  padding: 8px 0;
+  max-width: 300px;
+}
+
+.notification-title {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.notification-message {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.notification-time {
+  font-size: 11px;
+  color: #999;
+}
+
+/* 主内容区域样式 */
+.layout-main-content {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  background-color: #f5f5f5;
+}
+
+.content-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  min-height: calc(100vh - 112px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .layout-sider {
+    position: fixed;
+    z-index: 1000;
+  }
+  
+  .layout-content {
+    margin-left: 0;
+  }
+  
+  .layout-header {
+    padding: 0 16px;
+  }
+  
+  .header-left {
+    gap: 8px;
+  }
+  
+  .breadcrumb {
+    display: none;
+  }
+  
+  .user-name {
+    display: none;
+  }
+  
+  .layout-main-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout-header {
+    padding: 0 12px;
+  }
+  
+  .layout-main-content {
+    padding: 12px;
+  }
+  
+  .content-wrapper {
+    border-radius: 4px;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .layout-header {
+  background-color: #141414;
+  border-bottom: 1px solid #303030;
+}
+
+[data-theme='dark'] .user-info:hover {
+  background-color: #262626;
+}
+
+[data-theme='dark'] .user-name {
+  color: #fff;
+}
+
+[data-theme='dark'] .notification-title {
+  color: #fff;
+}
+
+[data-theme='dark'] .notification-message {
+  color: #bfbfbf;
+}
+
+[data-theme='dark'] .layout-main-content {
+  background-color: #000;
+}
+
+[data-theme='dark'] .content-wrapper {
+  background-color: #141414;
+  border: 1px solid #303030;
+}
+
+/* 动画效果 */
+.ant-layout-sider-collapsed .logo-text {
+  opacity: 0;
+  width: 0;
+}
+
+.ant-layout-sider-collapsed .logo-image {
+  margin-right: 0;
+}
+
+/* 滚动条样式 */
+.layout-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.layout-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.layout-menu::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 3px;
+}
+
+.layout-menu::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
+[data-theme='dark'] .layout-menu::-webkit-scrollbar-thumb {
+  background: #434343;
+}
+
+[data-theme='dark'] .layout-menu::-webkit-scrollbar-thumb:hover {
+  background: #595959;
+}

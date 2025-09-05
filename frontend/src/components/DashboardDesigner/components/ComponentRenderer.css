@@ -1,0 +1,522 @@
+/* 组件渲染器基础样式 */
+.component-renderer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 文本组件 */
+.text-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 图表组件 */
+.chart-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.chart-title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.chart-description {
+  margin: 0;
+  font-size: 12px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.chart-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.chart-placeholder {
+  text-align: center;
+  color: #6c757d;
+}
+
+.placeholder-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.placeholder-text {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #495057;
+}
+
+.placeholder-subtitle {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* 表格组件 */
+.table-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.table-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.table-content {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.data-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.data-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* 指标卡片组件 */
+.metric-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-icon {
+  margin-bottom: 12px;
+}
+
+.metric-value {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+
+.metric-label {
+  font-weight: 500;
+}
+
+.metric-trend {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 图片组件 */
+.image-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.image-placeholder:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.image-placeholder .placeholder-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.image-placeholder .placeholder-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 容器组件 */
+.container-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-header {
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.container-title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.container-description {
+  margin: 0;
+  font-size: 12px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.container-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  border: 1px dashed #dee2e6;
+  border-radius: 4px;
+  background: rgba(248, 249, 250, 0.5);
+}
+
+.container-placeholder {
+  text-align: center;
+  color: #6c757d;
+}
+
+/* 按钮组件 */
+.button-component {
+  width: 100%;
+  height: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  user-select: none;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* 按钮尺寸 */
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.btn-md {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-lg {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* 按钮变体 */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #545b62;
+  border-color: #545b62;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: #fff;
+}
+
+.btn-info:hover:not(:disabled) {
+  background-color: #117a8b;
+  border-color: #117a8b;
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.btn-outline-primary:hover:not(:disabled) {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-icon {
+  font-size: 1em;
+}
+
+.btn-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 分隔符组件 */
+.divider-component {
+  width: 100%;
+  height: 100%;
+}
+
+/* 未知组件 */
+.unknown-component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+}
+
+.unknown-component .placeholder-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.unknown-component .placeholder-text {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #495057;
+}
+
+.unknown-component .placeholder-subtitle {
+  font-size: 12px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .chart-title,
+  .table-title,
+  .container-title {
+    font-size: 14px;
+  }
+  
+  .chart-description,
+  .container-description {
+    font-size: 11px;
+  }
+  
+  .data-table {
+    font-size: 12px;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 6px 8px;
+  }
+  
+  .metric-value {
+    font-size: 24px;
+  }
+  
+  .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .btn-sm {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  
+  .btn-lg {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}
+
+/* 暗色主题 */
+@media (prefers-color-scheme: dark) {
+  .chart-title,
+  .table-title,
+  .container-title {
+    color: #f8f9fa;
+  }
+  
+  .chart-description,
+  .container-description {
+    color: #adb5bd;
+  }
+  
+  .placeholder-text {
+    color: #dee2e6;
+  }
+  
+  .placeholder-subtitle {
+    color: #adb5bd;
+  }
+  
+  .data-table th {
+    background: #343a40;
+    color: #dee2e6;
+  }
+  
+  .data-table th,
+  .data-table td {
+    border-bottom-color: #495057;
+  }
+  
+  .data-table tbody tr:hover {
+    background: #343a40;
+  }
+  
+  .image-placeholder,
+  .container-content,
+  .unknown-component {
+    background: #343a40;
+    border-color: #495057;
+    color: #adb5bd;
+  }
+  
+  .image-placeholder:hover {
+    background: #495057;
+    border-color: #6c757d;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .component-renderer {
+    break-inside: avoid;
+  }
+  
+  .chart-placeholder,
+  .image-placeholder,
+  .container-placeholder,
+  .unknown-component {
+    border-style: solid;
+    background: #f8f9fa;
+  }
+  
+  .btn {
+    border: 1px solid #333;
+    background: #fff;
+    color: #333;
+  }
+}

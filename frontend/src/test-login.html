@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录表单测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #40a9ff;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h2>登录表单测试</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="email">邮箱:</label>
+            <input type="email" id="email" name="email" value="admin@51talk.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" value="admin123" required>
+        </div>
+        
+        <button type="submit">登录</button>
+    </form>
+    
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>表单数据:</h3>
+                <p><strong>邮箱:</strong> ${email}</p>
+                <p><strong>密码:</strong> ${password}</p>
+                <p><strong>邮箱长度:</strong> ${email.length}</p>
+                <p><strong>密码长度:</strong> ${password.length}</p>
+                <p><strong>表单验证:</strong> ${email && password ? '通过' : '失败'}</p>
+            `;
+            
+            // 模拟API调用
+            console.log('登录数据:', { email, password });
+            
+            // 测试API调用
+            fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('API响应:', data);
+                resultDiv.innerHTML += `<p><strong>API响应:</strong> ${JSON.stringify(data)}</p>`;
+            })
+            .catch(error => {
+                console.error('API错误:', error);
+                resultDiv.innerHTML += `<p><strong>API错误:</strong> ${error.message}</p>`;
+            });
+        });
+        
+        // 监听输入变化
+        document.getElementById('email').addEventListener('input', function(e) {
+            console.log('邮箱输入变化:', e.target.value);
+        });
+        
+        document.getElementById('password').addEventListener('input', function(e) {
+            console.log('密码输入变化:', e.target.value);
+        });
+    </script>
+</body>
+</html>

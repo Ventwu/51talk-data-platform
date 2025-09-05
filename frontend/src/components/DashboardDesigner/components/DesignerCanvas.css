@@ -1,0 +1,352 @@
+/* 设计器画布样式 */
+.designer-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: auto;
+  outline: none;
+}
+
+.designer-canvas:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* 拖拽状态 */
+.designer-canvas.drag-over {
+  background: #f0f8ff;
+  border-color: #007bff;
+}
+
+.designer-canvas.can-drop {
+  cursor: copy;
+}
+
+/* 网格布局 */
+.grid-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* 网格辅助线 */
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 组件包装器 */
+.component-wrapper {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.component-wrapper:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.component-wrapper.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.component-wrapper.readonly {
+  cursor: default;
+}
+
+.component-wrapper.readonly:hover {
+  border-color: #e9ecef;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 选中状态覆盖层 */
+.selection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.selection-border {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  animation: selection-pulse 2s infinite;
+}
+
+@keyframes selection-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* 选择手柄 */
+.selection-handles {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+}
+
+.handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #007bff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.handle:hover {
+  background: #0056b3;
+  transform: scale(1.2);
+}
+
+.handle-nw {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+}
+
+.handle-ne {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+}
+
+.handle-sw {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+}
+
+.handle-se {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+
+/* 拖拽预览 */
+.drop-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 123, 255, 0.1);
+  border: 2px dashed #007bff;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.preview-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #007bff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.preview-icon {
+  font-size: 24px;
+}
+
+.preview-name {
+  text-align: center;
+}
+
+/* 空画布状态 */
+.empty-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.empty-content {
+  text-align: center;
+  color: #6c757d;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.empty-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* React Grid Layout 样式覆盖 */
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top;
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: transform;
+}
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZG90cyBmaWxsPSIjOTk5IiBkPSJtMTUgMTJjMCAuNTUyLS40NDggMS0xIDFzLTEtLjQ0OC0xLTEgLjQ0OC0xIDEtMSAxIC40NDggMSAxem0wIDRjMCAuNTUyLS40NDggMS0xIDFzLTEtLjQ0OC0xLTEgLjQ0OC0xIDEtMSAxIC40NDggMSAxem0wIDRjMCAuNTUyLS40NDggMS0xIDFzLTEtLjQ0OC0xLTEgLjQ0OC0xIDEtMSAxIC40NDggMSAxem0tNS00YzAtLjU1Mi40NDgtMSAxLTFzMSAuNDQ4IDEgMS0uNDQ4IDEtMSAxLTEtLjQ0OC0xLTF6bTAgNGMwLS41NTIuNDQ4LTEgMS0xczEgLjQ0OCAxIDEtLjQ0OCAxLTEgMS0xLS40NDgtMS0xem0wLThjMC0uNTUyLjQ0OC0xIDEtMXMxIC40NDggMSAxLS40NDggMS0xIDEtMS0uNDQ4LTEtMXptNC00YzAtLjU1Mi40NDgtMSAxLTFzMSAuNDQ4IDEgMS0uNDQ4IDEtMSAxLTEtLjQ0OC0xLTF6bTAgNGMwLS41NTIuNDQ4LTEgMS0xczEgLjQ0OCAxIDEtLjQ0OCAxLTEgMS0xLS40NDgtMS0xeiIvPgo8L3N2Zz4K') no-repeat;
+  background-size: contain;
+  cursor: se-resize;
+  z-index: 20;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  content: '';
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: rgba(0, 123, 255, 0.1);
+  border: 2px dashed #007bff;
+  border-radius: 6px;
+  opacity: 0.8;
+  transition-duration: 100ms;
+  z-index: 2;
+  user-select: none;
+}
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 3;
+  opacity: 0.8;
+}
+
+.react-grid-item.resizing {
+  opacity: 0.8;
+  z-index: 3;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .designer-canvas {
+    min-height: 400px;
+  }
+  
+  .empty-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .empty-title {
+    font-size: 16px;
+  }
+  
+  .empty-description {
+    font-size: 13px;
+  }
+  
+  .handle {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .react-grid-item > .react-resizable-handle {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* 暗色主题 */
+@media (prefers-color-scheme: dark) {
+  .designer-canvas {
+    background: #1a1a1a;
+    border-color: #333;
+  }
+  
+  .component-wrapper {
+    background: #2d2d2d;
+    border-color: #444;
+  }
+  
+  .component-wrapper:hover {
+    border-color: #007bff;
+  }
+  
+  .empty-content {
+    color: #adb5bd;
+  }
+  
+  .empty-title {
+    color: #f8f9fa;
+  }
+  
+  .grid-overlay line {
+    stroke: #444;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .designer-canvas {
+    border: none;
+    box-shadow: none;
+  }
+  
+  .selection-overlay,
+  .grid-overlay,
+  .react-grid-item > .react-resizable-handle {
+    display: none !important;
+  }
+  
+  .component-wrapper {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

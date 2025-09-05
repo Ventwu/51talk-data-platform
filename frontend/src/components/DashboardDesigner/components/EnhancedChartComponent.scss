@@ -1,0 +1,291 @@
+// Enhanced Chart Component Styles
+.enhanced-chart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .chart-header {
+    padding: 16px 16px 8px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fafafa;
+
+    .chart-title {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #262626;
+      line-height: 1.4;
+    }
+
+    .chart-description {
+      margin: 0 0 8px 0;
+      font-size: 12px;
+      color: #8c8c8c;
+      line-height: 1.4;
+    }
+
+    .chart-data-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #595959;
+
+      .data-source-name {
+        font-weight: 500;
+        color: #1890ff;
+      }
+
+      .data-count {
+        color: #8c8c8c;
+      }
+    }
+  }
+
+  .chart-content {
+    flex: 1;
+    position: relative;
+    min-height: 200px;
+    padding: 8px;
+
+    // ECharts 容器样式
+    .echarts-for-react {
+      height: 100% !important;
+      width: 100% !important;
+    }
+  }
+
+  // 占位符样式
+  .chart-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+    color: #bfbfbf;
+    text-align: center;
+    padding: 24px;
+
+    .placeholder-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .placeholder-text {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #8c8c8c;
+    }
+
+    .placeholder-subtitle {
+      font-size: 12px;
+      color: #bfbfbf;
+      line-height: 1.4;
+    }
+  }
+
+  // 加载状态
+  &.loading {
+    .chart-content {
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 10;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 32px;
+        height: 32px;
+        margin: -16px 0 0 -16px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #1890ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 11;
+      }
+    }
+  }
+
+  // 错误状态
+  &.error {
+    .chart-placeholder {
+      .placeholder-icon {
+        color: #ff4d4f;
+      }
+
+      .placeholder-text {
+        color: #ff4d4f;
+      }
+    }
+  }
+
+  // 只读模式
+  &.readonly {
+    cursor: default;
+    
+    .chart-content {
+      pointer-events: none;
+    }
+  }
+
+  // 选中状态
+  &.selected {
+    border: 2px solid #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+
+  // 响应式设计
+  @media (max-width: 768px) {
+    .chart-header {
+      padding: 12px;
+
+      .chart-title {
+        font-size: 14px;
+      }
+
+      .chart-description {
+        font-size: 11px;
+      }
+
+      .chart-data-info {
+        font-size: 11px;
+      }
+    }
+
+    .chart-content {
+      padding: 4px;
+      min-height: 150px;
+    }
+
+    .chart-placeholder {
+      min-height: 150px;
+      padding: 16px;
+
+      .placeholder-icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+      }
+
+      .placeholder-text {
+        font-size: 14px;
+      }
+
+      .placeholder-subtitle {
+        font-size: 11px;
+      }
+    }
+  }
+
+  // 深色主题支持
+  &.dark-theme {
+    background: #1f1f1f;
+    color: #fff;
+
+    .chart-header {
+      background: #262626;
+      border-bottom-color: #434343;
+
+      .chart-title {
+        color: #fff;
+      }
+
+      .chart-description {
+        color: #bfbfbf;
+      }
+
+      .chart-data-info {
+        color: #d9d9d9;
+
+        .data-source-name {
+          color: #40a9ff;
+        }
+
+        .data-count {
+          color: #bfbfbf;
+        }
+      }
+    }
+
+    .chart-placeholder {
+      color: #8c8c8c;
+
+      .placeholder-text {
+        color: #bfbfbf;
+      }
+
+      .placeholder-subtitle {
+        color: #8c8c8c;
+      }
+    }
+  }
+}
+
+// 动画
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 图表工具提示样式覆盖
+.echarts-tooltip {
+  background: rgba(50, 50, 50, 0.95) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  padding: 8px 12px !important;
+}
+
+// 图表图例样式
+.echarts-legend {
+  font-size: 12px !important;
+}
+
+// 图表坐标轴样式
+.echarts-axis {
+  .echarts-axis-label {
+    font-size: 11px !important;
+    color: #8c8c8c !important;
+  }
+
+  .echarts-axis-line {
+    stroke: #d9d9d9 !important;
+  }
+
+  .echarts-axis-tick {
+    stroke: #d9d9d9 !important;
+  }
+}
+
+// 图表网格线样式
+.echarts-grid {
+  .echarts-grid-line {
+    stroke: #f0f0f0 !important;
+    stroke-dasharray: 2,2 !important;
+  }
+}
